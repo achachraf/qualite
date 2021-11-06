@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="generate(event)" >
+        
+        Le nombre des variables : <input id='n' type="text" placeholder="Ex 5"><br>
+        Les Yi : <input type="text" id="Y" placeholder="1,2,3,..."><br>
+        limite <input id='lim' type="text"><br>
+        <input type="submit" />
+    </form>
+    <h3>Results</h3><br>
+    <table id="results" border="1px">
+        <tr id="head">
+            <td>Value</td>
+        </tr>
+    </table>
+</body>
+<script type="text/javascript" src="core.js"></script>
+<script>
+    function generate(e){
+        let Y = document.getElementById("Y").value.split(',');
+        let n = parseInt(document.getElementById("n").value);
+        let lim =parseFloat(document.getElementById("lim").value).toPrecision(2);
+        for(var i=0;i<Y.length;i++){
+            Y[i] = parseFloat(Y[i]);
+        }
+        //[0.67,0.61,0.79,0.75,0.59,0.52,0.90,0.87]
+        try{
+            console.log(Y)
+            runCode(Y,n,lim);
+        }
+        catch(err){
+            console.log(err);
+        }
+        e = e ||window.event;
+        e.preventDefault();
+        for(var i=0;i<n;i++){
+            let column = document.createElement("td");
+            document.getElementById("head").appendChild(column);
+            column.textContent = "x"+(n-i);
+    }
+        for(key of keys){
+            let newkey = key.split(",")
+            let row = document.createElement("tr");
+            let column = document.createElement("td");
+            column.textContent = values[key];
+            row.appendChild(column);
+            for(var i=0;i<n;i++){
+                let column = document.createElement("td");
+                column.textContent = newkey[i];
+                row.appendChild(column);
+            }
+            document.getElementById("results").appendChild(row)
+        }
+    }
+    
+</script>
+</html>
